@@ -8,7 +8,7 @@ export default defineUserConfig({
     navbar: [
       {
         text: "GitHub",
-        link: "https://github.com/pku-software"
+        link: "https://github.com/pku-software/sehomework"
       }
     ],
     sidebar: [

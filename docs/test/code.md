@@ -6,7 +6,7 @@
 
 ## 获取项目
 ```bash
-git clone 
+git clone https://github.com/pku-software/rjsj_test.git
 ```
 
 ## 前置环境
