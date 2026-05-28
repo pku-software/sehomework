@@ -24,6 +24,15 @@ export default defineUserConfig({
           "/test/code"
         ],
       },
+      {
+        text: "软件设计模式",
+        children: [
+          "/design/intro",
+          "/design/creation",
+          "/design/structure",
+          "/design/behavior"
+        ],
+      }
     ],
   }),
 });
