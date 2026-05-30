@@ -25,34 +25,31 @@ Bob 初步计划为`BobVector`设计这些函数：
 
 ## STEP2
 
-在你的帮助下，Bob 完成了`BobVector`的实现，他打算用尽他的毕生功力写一个冒泡排序：
+在你的帮助下，Bob 完成了 `BobVector` 的实现。Bob 很快发现，虽然 `BobVector` 已经比 `std::vector` 顺眼多了，但是每次真正使用向量时，他还是要写一大堆重复代码。
+
+比如 Bob 经常需要对一个 `BobVector<int>` 做这样一套操作：先判断向量是不是空，再对它进行排序，然后去掉重复元素，最后把处理后的结果打印出来。为了不让所有代码都挤在一起，Bob 把这些功能分别交给了几个小类：
+
+- `BobVectorSorter`：负责给 `BobVector<int>` 排序
+- `BobVectorDeduplicator`：负责删除重复元素
+- `BobVectorPrinter`：负责输出向量内容
+
+虽然每个小类都很努力地工作，但是 Bob 每次使用时都要记住应该先调用谁、后调用谁，还要自己组织它们之间的调用顺序。Bob 觉得这件事非常不优雅，甚至有点折磨。
+
+于是 Bob 打算创建一个新的类，叫 `BobVectorServant`。这个类对外只提供简单的高级接口，例如：
+
 ```cpp
-void sort(BobVector<int>& v) {
-    size_t n = v.len();
-    if (n <= 1) return;
-
-    for (size_t i = 0; i < n - 1; ++i) {
-        for (size_t j = 0; j < n - i - 1; ++j) {
-            if (v.get(j) > v.get(j + 1)) {
-                int temp = v.get(j);
-                v.get(j) = v.get(j + 1);
-                v.get(j + 1) = temp;
-            }
-        }
-    }
-}
+void tidy_and_print(BobVector<int>& v);
 ```
-写这样一个函数可废了Bob 老大的劲，一想到每次开一个新项目，Bob 都可能要重新写一遍这个函数，他就感到脊背发凉。
 
-于是Bob 打算创建一个新的类，叫`BobVectorServant`。这个类专门用来封装类似于冒泡排序这样的使用`BobVector`提供的接口实现的复杂逻辑，这样就不用重复想逻辑写代码了。
+调用这个函数后，它会自动完成“判空、排序、去重、输出”等一整套操作。这样，用户就不需要直接和`BobVectorSorter`、`BobVectorDeduplicator`、`BobVectorPrinter` 这些类打交道了。
 
 请为Bob 选择合适的设计模式，并画出类图。
 
 ## STEP3
 
-Bob 再也无法忍受向量中的第一个元素要用`BobVector::get(0)`来访问了！第一个元素的序号就该是1不应该是0！
+Bob 在实现`BobVector`的`get()`函数时，只是简单复用了`std::vector`的`[]`运算符，他很快发现了一个问题，他使用的编译器根本没对这个运算符做越界检查！
 
-虽然Bob 完全无法理解从0开始编号这个事情，但是Bob 很温柔，为了照顾广大用户的体验他并不打算更改`BobVector`的实现，而是打算创建一个新的类专为跟Bob 志同道合的人服务。这个类提供和`BobVector`完全一样的接口，但是`get()`方法访问元素的序号从`1`开始数。
+Bob 可是学过软设的人，他非常关注自己代码的健壮性，所以他打算给`BobVector`的`get()`函数加上越界检查功能。不过考虑到Bob 之前已经用这个类写过一些代码了，他并不想直接动`BobVector`的代码，以免出现什么别的问题。也就是说，在新的实现完成后，应该有两个接口完全相同的向量类，其中一个和原来一样，另一个的`get()`函数内部悄咪咪加上了越界检查，用户可以自由选择他们想要的向量类进行使用。
 
 请为Bob 选择合适的设计模式，并画出类图。
 
