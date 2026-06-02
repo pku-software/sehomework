@@ -21,7 +21,8 @@ export default defineUserConfig({
           "/test/vcpkg",
           "/test/boost",
           "/test/llvm-cov",
-          "/test/code"
+          "/test/code",
+          "/test/answers"
         ],
       },
       {
