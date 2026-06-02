@@ -3,6 +3,10 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # Rebuild shortly after midnight in Asia/Shanghai so date-gated sidebar
+    # entries can appear without a manual push.
+    - cron: "5 16 * * *"
   workflow_dispatch:
 
 permissions:
