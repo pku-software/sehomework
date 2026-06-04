@@ -13,6 +13,21 @@ const timedPages: TimedPage[] = [
     file: "test/answers.md",
     revealAt: "2026-06-02T23:59:00+08:00",
   },
+  {
+    link: "/refactor/intro",
+    file: "refactor/intro.md",
+    revealAt: "2026-06-07T13:00:00+08:00",
+  },
+  {
+    link: "/refactor/task",
+    file: "refactor/task.md",
+    revealAt: "2026-06-07T13:00:00+08:00",
+  },
+  {
+    link: "/refactor/answer",
+    file: "refactor/answer.md",
+    revealAt: "2026-06-14T23:59:00+08:00",
+  },
 ];
 
 const buildTime = Date.now();
@@ -82,6 +97,14 @@ export default defineUserConfig({
           "/design/creation",
           "/design/structure",
           "/design/behavior"
+        ]),
+      },
+      {
+        text: "代码重构",
+        children: visibleSidebarChildren([
+          "/refactor/intro",
+          "/refactor/task",
+          "/refactor/answer"
         ]),
       }
     ],
