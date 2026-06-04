@@ -100,7 +100,7 @@ export default defineUserConfig({
         ]),
       },
       {
-        text: "代码重构",
+        text: "软件重构",
         children: visibleSidebarChildren([
           "/refactor/intro",
           "/refactor/task",
