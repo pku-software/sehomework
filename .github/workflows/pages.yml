@@ -7,6 +7,8 @@ on:
     # Rebuild shortly after midnight in Asia/Shanghai so date-gated sidebar
     # entries can appear without a manual push.
     - cron: "5 16 * * *"
+    # Rebuild at 13:00 in Asia/Shanghai for afternoon scheduled releases.
+    - cron: "0 5 * * *"
   workflow_dispatch:
 
 permissions:
