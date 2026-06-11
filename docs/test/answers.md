@@ -129,53 +129,51 @@
 
 #### 待测代码
 
-以下行号仅用于本答案引用覆盖点。
-
 ```cpp
-L01  void exercise_wb_1(int param1, int param2, int param3)
-L02  {
-L03      int res = -1;
-L04      if (param1 > 0 && param2 > 0 && param3 > 0)
-L05      {
-L06          if (param1 > param2)
-L07          {
-L08              if (param2 > param3)
-L09              {
-L10                  res = 3;
-L11              }
-L12              else if (param1 > param3)
-L13              {
-L14                  res = 2;
-L15              }
-L16              else
-L17              {
-L18                  res = 1;
-L19              }
-L20          }
-L21          else
-L22          {
-L23              if (param2 > param3)
-L24              {
-L25                  if (param1 > param3)
-L26                  {
-L27                      res = 2;
-L28                  }
-L29                  else
-L30                  {
-L31                      res = 1;
-L32                  }
-L33              }
-L34              else
-L35              {
-L36                  res = 0;
-L37              }
-L38          }
-L39      }
-L40      cout << res << endl;
-L41  }
+void exercise_wb_1(int param1, int param2, int param3)
+{
+    int res = -1;
+    if (param1 > 0 && param2 > 0 && param3 > 0)
+    {
+        if (param1 > param2)
+        {
+            if (param2 > param3)
+            {
+                res = 3;
+            }
+            else if (param1 > param3)
+            {
+                res = 2;
+            }
+            else
+            {
+                res = 1;
+            }
+       }
+       else
+       {
+            if (param2 > param3)
+            {
+                if (param1 > param3)
+                {
+                    res = 2;
+                }
+                else
+                {
+                    res = 1;
+                }
+            }
+            else
+            {
+                res = 0;
+            }
+        }
+    }
+    cout << res << endl;
+}
 ```
 
-#### 行覆盖
+#### 语句覆盖
 
 > 期望输出和覆盖代码行只是方便阅读，不要求在实际作答中写出
 
@@ -194,7 +192,7 @@ L41  }
 
 > 期望输出和覆盖分支只是方便阅读，不要求在实际作答中写出
 
-在行覆盖样例基础上增加一个外层条件为假的样例即可覆盖外层 `if` 的假分支。
+在语句覆盖样例基础上增加一个外层条件为假的样例即可覆盖外层 `if` 的假分支。
 
 | 编号 | `(param1, param2, param3)` | 期望输出 | 覆盖分支 |
 | --- | --- | ---: | --- |
@@ -240,36 +238,34 @@ P3 = param3 > 0
 
 #### 待测代码
 
-以下行号仅用于本答案引用覆盖点。
-
 ```cpp
-L01  void exercise_wb_2(int param1, int param2)
-L02  {
-L03      int param3 = param1 + param2;
-L04      if (param3 > 0)
-L05      {
-L06          ++param1;
-L07      }
-L08      if (param3 < 0)
-L09      {
-L10          ++param2;
-L11      }
-L12      if (param1 > param2 || param1 > param3)
-L13      {
-L14          if (param1 <= param2 || param1 <= param3)
-L15          {
-L16              param3 += param1;
-L17          }
-L18      }
-L19      if (param3 != 0)
-L20      {
-L21          param3 += param2;
-L22      }
-L23      cout << param3 << endl;
-L24  }
+void exercise_wb_2(int param1, int param2)
+{
+    int param3 = param1 + param2;
+    if (param3 > 0)
+    {
+        ++param1;
+    }
+    if (param3 < 0)
+    {
+        ++param2;
+    }
+    if (param1 > param2 || param1 > param3)
+    {
+        if (param1 <= param2 || param1 <= param3)
+        {
+            param3 += param1;
+        }
+    }
+    if (param3 != 0)
+    {
+        param3 += param2;
+    }
+    cout << param3 << endl;
+}
 ```
 
-#### 行覆盖
+#### 语句覆盖
 
 | 编号 | `(param1, param2)` | 期望输出 | 主要覆盖目标代码行 |
 | --- | --- | ---: | --- |
@@ -320,41 +316,41 @@ S = param1 <= param3 = !Q
 以下行号仅用于本答案引用覆盖点。
 
 ```cpp
-L01  void exercise_wb_3(vector<int> params)
-L02  {
-L03      bool flag = true;
-L04      int res = 0;
-L05      int pos = 0;
-L06      int sz = params.size();
-L07      while (pos != sz)
-L08      {
-L09          if (flag)
-L10          {
-L11              res += params[pos];
-L12          }
-L13          else
-L14          {
-L15              res -= params[pos];
-L16          }
-L17          if (params[pos] > 0)
-L18          {
-L19              flag = !flag;
-L20          }
-L21          ++pos;
-L22      }
-L23      if (res > 0)
-L24      {
-L25          res = res * res;
-L26      }
-L27      if (res < 0)
-L28      {
-L29          res = -(res * res);
-L30      }
-L31      cout << res << endl;
-L32  }
+void exercise_wb_3(vector<int> params)
+{
+    bool flag = true;
+    int res = 0;
+    int pos = 0;
+    int sz = params.size();
+    while (pos != sz)
+    {
+        if (flag)
+        {
+            res += params[pos];
+        }
+        else
+        {
+            res -= params[pos];
+        }
+        if (params[pos] > 0)
+        {
+            flag = !flag;
+        }
+        ++pos;
+    }
+    if (res > 0)
+    {
+        res = res * res;
+    }
+    if (res < 0)
+    {
+        res = -(res * res);
+    }
+    cout << res << endl;
+}
 ```
 
-#### 行覆盖
+#### 语句覆盖
 
 | 编号 | `params` | 期望输出 | 主要覆盖目标代码行 |
 | --- | --- | ---: | --- |
