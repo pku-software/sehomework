@@ -96,7 +96,8 @@ export default defineUserConfig({
           "/design/intro",
           "/design/creation",
           "/design/structure",
-          "/design/behavior"
+          "/design/behavior",
+          "/design/answer",
         ]),
       },
       {
